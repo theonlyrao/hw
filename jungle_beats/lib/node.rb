@@ -13,4 +13,10 @@ class Node
     @link
   end
 
+  def string_of_data_to_nodes
+    string_split = string_of_data_to_nodes.split()
+    n = string_split
+    # working here from notes
+  end
+
 end
