@@ -15,8 +15,16 @@ class Node
 
   def string_of_data_to_nodes
     string_split = string_of_data_to_nodes.split()
-    n = string_split
-    # working here from notes
+    n = string_split.count
+    n.times do
+      @data = string_split.pop
+      if n == 1
+        @link = nil
+      else
+        @link = string_split[n - 1]
+      end
+      return (@data, @link)
+    end
   end
-
+  
 end
