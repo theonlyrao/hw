@@ -3,14 +3,11 @@ require 'pry'
 
 class List
 
-  attr_reader :head, :tail
+  attr_reader :head, :tail, :result
 
   def initialize(beats)
     @head = beats
-  end
-
-  def all
-
+    @count = 4
   end
 
   def append(data)
@@ -26,22 +23,39 @@ class List
   def find(position, num_elements)
     #get to the right position
     #find its data and then the next elements
-    @result = @head
+    result = @head
     position_counter = 0
-    if position_counter = position
-      grab_elements(@result, num_elements)
-    else
+    while position_counter < position
+      result = result.link
       position_counter += 1
     end
+    found_nodes = [result.data]
+    num_elements.times do
+      unless result.link.link.nil?
+        found_nodes << result.link.data
+        result = result.link
+      end
+    end
+    found_nodes << result.link.data
+    found_nodes.join(" ")
   end
 
-  def grab_elements(starting_node, num_elements)
-    @elements = []
-    num_elements.times do
-      @elements << starting_node.link.data
-      starting_node = starting_node.link
-    end
-    @elements.join(" ")
+  # def grab_elements(starting_node, num_elements)
+  #   #called by find method for List
+  #   @elements = [starting_node]
+  #   num_elements.times do
+  #     @elements << starting_node.link.data
+  #     starting_node = starting_node.link
+  #   end
+  #   @elements.join(" ")
+  # end
+
+  def count
+    @count
+  end
+
+  def all
+    self.find(0, @count)
   end
 
   def prepend(beat)
