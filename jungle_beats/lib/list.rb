@@ -5,44 +5,43 @@ class List
 
   attr_reader :string_of_data, :head, :tail
 
-  def initialize(string)
-    @string_of_data = string
+  def initialize(beats)
+    @string_of_data = beats
   end
 
   def string_of_data_to_nodes
-    input = string_of_data.split()
-    max_counter = input.count
-    counter = 0
-    while counter < max_counter
-      input.each do |word|
-        Node.new(word, input[counter + 1])
-        counter += 1
-      end
-    Node.new(input[-1], nil)
-    end
   end
 
   def append(data)
   end
 
-  def find(data)
+  def find(position, elements)
+    current_position = 0
+    start = self.head.link
+    current_position = 1
+    first = start.link
+    current_position = 2
+    second = first.link
+
+    second.data + second.link.data + second.link.link.data
   end
 
   def count
   end
 
   def head
-    split_arg = @string_of_data.split()
-    @head = Node.new(split_arg[0], Node.new(split_arg[1]))
+    data_array = @string_of_data.split()
+    head = data_array.first
+    if data_array.count > 1
+      Node.new(head, data_array[1])
+    else
+      Node.new(head)
+    end
   end
 
   def tail
-    @current_node = self.head
-    binding.pry
-    until @current_node.link.nil?
-      @current_node = @current_node.link
-    end
-    @current_node
+    tail = @string_of_data.split().last
+    Node.new(tail)
   end
 
 end

@@ -6,6 +6,7 @@ class Node
 
   def initialize(data, link = nil)
     @data = data
+    @link = link
   end
 
   def data
@@ -13,7 +14,11 @@ class Node
   end
 
   def link
-    Node.new(self, nil)
+    if @link.nil?
+      nil
+    else
+      Node.new(@link)
+    end
   end
 
 end
