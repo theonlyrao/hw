@@ -2,7 +2,7 @@ require 'pry'
 
 class Node
 
-  attr_reader :data
+  attr_reader :data, :link
 
   def initialize(data, link = nil)
     @data = data
@@ -14,11 +14,7 @@ class Node
   end
 
   def link
-    if @link.nil?
-      nil
-    else
-      Node.new(@link)
-    end
+    @link
   end
 
 end

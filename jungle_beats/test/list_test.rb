@@ -10,17 +10,17 @@ class ListTest < Minitest::Test
   end
 
   def test_passing_a_one_word_string_creates_tail
+    skip
     list = List.new("dee")
 
     assert_equal "dee", list.tail.data
     assert_equal nil, list.tail.link
   end
 
-  def test_passing_a_two_word_string_creates_a_tail
+  def test_can_find_tail_in_two_beat_string
     list = List.new("bop beep")
 
-    assert_equal "beep", list.tail.data
-    assert_equal nil, list.tail.link
+    assert_equal "beep", list.find_tail.data
   end
 
   def test_string_with_two_words_creates_a_head
@@ -31,9 +31,8 @@ class ListTest < Minitest::Test
 
   def test_string_with_two_words_creates_head_with_link_to_second_word
     list = List.new("tee dep")
-    link_node = Node.new("dep")
 
-    assert_equal link_node, list.head.link
+    assert_equal Node.new("tee", Node.new("dep", nil)), list.head
   end
 
   def test_find_returns_the_data_of_node_at_positions
@@ -56,4 +55,9 @@ class ListTest < Minitest::Test
   def test_count_returns_the_number_of_nodes_in_list
   end
 
+  def test_prepend_adds_a_node_to_the_front
+    list = List.new("deep dop")
+
+    assert_equal "tee deep dop", list.prepend("tee")
+  end
 end

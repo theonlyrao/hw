@@ -7,41 +7,40 @@ class List
 
   def initialize(beats)
     @string_of_data = beats
-  end
-
-  def string_of_data_to_nodes
+    @head = Node.new(@string_of_data.split().first, Node.new("beep"))
   end
 
   def append(data)
+    #get to the tail
+    #switch the link in the tail from nil to Node.new(data)
   end
 
   def find(position, elements)
-    current_position = 0
-    start = self.head.link
-    current_position = 1
-    first = start.link
-    current_position = 2
-    second = first.link
+    #get to the right position
+    #find its data and then the next elements
+  end
 
-    second.data + second.link.data + second.link.link.data
+  def prepend(beat)
+    old_head = self.head
+    @head = Node.new(beat, old_head)
   end
 
   def count
+    #every time you open a node increment the count until you hit the tail
   end
 
   def head
-    data_array = @string_of_data.split()
-    head = data_array.first
-    if data_array.count > 1
-      Node.new(head, data_array[1])
-    else
-      Node.new(head)
-    end
+    @head
   end
 
-  def tail
-    tail = @string_of_data.split().last
-    Node.new(tail)
+  def find_tail
+    @tail = @head
+    if @tail.link.nil?
+      @tail
+    else
+      @tail = @tail.link
+    end
+    @tail
   end
 
 end
