@@ -92,4 +92,16 @@ class List
     popped_nodes.join(" ")
   end
 
+  def include?(beat)
+    current_node = @head
+    while current_node.data != beat
+      if current_node.link.nil?
+        return false
+      else
+        current_node = current_node.link
+      end
+    end
+    return true
+  end
+
 end

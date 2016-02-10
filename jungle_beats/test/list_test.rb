@@ -96,4 +96,16 @@ class ListTest < Minitest::Test
     assert_equal "beep bop tee", list.pop(3)
     assert_equal "dep", list.tail_is.data
   end
+
+  def test_include_returns_true_if_beat_is_present
+    node4 = Node.new("tee", nil)
+    node3 = Node.new("bop", node4)
+    node2 = Node.new("beep", node3)
+    node1 = Node.new("dep", node2)
+
+    list = List.new(node1)
+
+    assert_equal true, list.include?("tee")
+    assert_equal false, list.include?("car")
+  end
 end
