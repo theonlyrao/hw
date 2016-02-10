@@ -7,7 +7,11 @@ class List
 
   def initialize(beats)
     @string_of_data = beats
-    @head = Node.new(@string_of_data.split().first, Node.new("beep"))
+    @head = Node.new(@string_of_data.split().first, Node.new(@string_of_data.split()[1..-1]))
+  end
+
+  def all
+    @new_beats
   end
 
   def append(data)
@@ -21,8 +25,9 @@ class List
   end
 
   def prepend(beat)
-    old_head = self.head
+    old_head = @head
     @head = Node.new(beat, old_head)
+    @new_beats = [@head].flatten
   end
 
   def count
@@ -34,13 +39,11 @@ class List
   end
 
   def find_tail
-    @tail = @head
-    if @tail.link.nil?
-      @tail
-    else
-      @tail = @tail.link
+    current_node = self.head
+    until current_node.link.nil?
+      current_node = current_node.link
     end
-    @tail
+    current_node
   end
 
 end
