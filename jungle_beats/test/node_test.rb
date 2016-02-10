@@ -28,4 +28,6 @@ class NodeTest < Minitest::Test
     assert_equal one.data, "one"
     assert_equal one.link, nil
   end
+
+
 end

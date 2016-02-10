@@ -2,9 +2,10 @@ require 'pry'
 
 class Node
 
+  attr_reader :data
+
   def initialize(data, link = nil)
     @data = data
-    @link = link
   end
 
   def data
@@ -12,11 +13,7 @@ class Node
   end
 
   def link
-    @link
-  end
-
-  def string_of_data_to_nodes
-
+    Node.new(self, nil)
   end
 
 end
