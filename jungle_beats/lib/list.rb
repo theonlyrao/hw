@@ -7,7 +7,6 @@ class List
 
   def initialize(beats)
     @head = beats
-    @count = 4
   end
 
   def append(data)
@@ -29,15 +28,15 @@ class List
       result = result.link
       position_counter += 1
     end
-    found_nodes = [result.data]
+    @found_nodes = []
     num_elements.times do
-      unless result.link.link.nil?
-        found_nodes << result.link.data
+      until result.link.nil?
+        @found_nodes << result.data
         result = result.link
       end
     end
-    found_nodes << result.link.data
-    found_nodes.join(" ")
+    @found_nodes << result.data
+    @found_nodes.join(" ")
   end
 
   # def grab_elements(starting_node, num_elements)
@@ -50,12 +49,8 @@ class List
   #   @elements.join(" ")
   # end
 
-  def count
-    @count
-  end
-
   def all
-    self.find(0, @count)
+    self.find(0, self.count)
   end
 
   def prepend(beat)
@@ -65,9 +60,33 @@ class List
 
   def count
     #every time you open a node increment the count until you hit the tail
+    @counter = 1
+    current_node = @head
+    while current_node != self.tail_is
+      current_node = current_node.link
+      @counter += 1
+    end
+    # binding.pry
+    @counter
   end
 
-  def find_tail
+  def tail_is
+    current_node = @head
+    until current_node.link.nil?
+      current_node = current_node.link
+    end
+    current_node
+  end
+
+  def pop(times)
+    popped_node = self.tail_is
+    current_node = @head
+    until current_node.link == popped_node
+      current_node = current_node.link
+    end
+    current_node.link = nil
+
+    return popped_node.data
   end
 
 end

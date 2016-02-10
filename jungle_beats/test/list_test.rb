@@ -13,6 +13,17 @@ class ListTest < Minitest::Test
     assert_equal list.head, node1
   end
 
+  def test_tail_is_identified
+    node4 = Node.new("la", nil)
+    node3 = Node.new("bop", node4)
+    node2 = Node.new("beep", node3)
+    node1 = Node.new("dep", node2)
+
+    list = List.new(node1)
+
+    assert_equal "la", list.tail_is.data
+  end
+
   def test_prepend_adds_a_beat_to_the_beginning
     node3 = Node.new("bop", nil)
     node2 = Node.new("beep", node3)
@@ -53,7 +64,6 @@ class ListTest < Minitest::Test
   end
 
   def test_all_returns_all_data
-    skip
     node4 = Node.new("tee", nil)
     node3 = Node.new("bop", node4)
     node2 = Node.new("beep", node3)
@@ -65,7 +75,6 @@ class ListTest < Minitest::Test
   end
 
   def test_count_returns_num_nodes_in_list
-    skip
     node4 = Node.new("tee", nil)
     node3 = Node.new("bop", node4)
     node2 = Node.new("beep", node3)
@@ -74,5 +83,17 @@ class ListTest < Minitest::Test
     list = List.new(node1)
 
     assert_equal 4, list.count
+  end
+
+  def test_pop_removes_tail
+    node4 = Node.new("tee", nil)
+    node3 = Node.new("bop", node4)
+    node2 = Node.new("beep", node3)
+    node1 = Node.new("dep", node2)
+
+    list = List.new(node1)
+
+    assert_equal "tee", list.pop(1)
+    assert_equal "bop", list.tail_is.data
   end
 end
