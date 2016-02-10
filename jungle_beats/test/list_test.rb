@@ -24,7 +24,7 @@ class ListTest < Minitest::Test
 
     list.prepend(new_beat)
 
-    assert_equal "tee", list.new_head.data
+    assert_equal "tee", list.head.data
   end
 
   def test_append_adds_a_beat_to_the_end
@@ -38,6 +38,17 @@ class ListTest < Minitest::Test
 
     list.append(new_beat)
 
-    assert_equal "deep", list.new_tail.data
+    assert_equal "deep", list.tail.data
+  end
+
+  def test_find_returns_node_at_position_and_num_of_subsequent
+    node4 = Node.new("tee", nil)
+    node3 = Node.new("bop", node4)
+    node2 = Node.new("beep", node3)
+    node1 = Node.new("dep", node2)
+
+    list = List.new(node1)
+
+    assert_equal "beep bop tee", list.find(1, 3)
   end
 end

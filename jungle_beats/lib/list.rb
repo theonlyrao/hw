@@ -3,34 +3,50 @@ require 'pry'
 
 class List
 
-  attr_reader :string_of_data, :head, :tail, :new_head, :new_tail
+  attr_reader :head, :tail
 
   def initialize(beats)
     @head = beats
   end
 
   def all
-    
+
   end
 
   def append(data)
     #get to the tail
     #switch the link in the tail from nil to Node.new(data)
-    @new_tail = @head
-    unless @new_tail.link.nil?
-      @new_tail = @head.link
+    @tail = @head
+    unless @tail.link.nil?
+      @tail = @head.link
     end
-    @new_tail = Node.new(data)
+    @tail = Node.new(data)
   end
 
-  def find(position, elements)
+  def find(position, num_elements)
     #get to the right position
     #find its data and then the next elements
+    @result = @head
+    position_counter = 0
+    if position_counter = position
+      grab_elements(@result, num_elements)
+    else
+      position_counter += 1
+    end
+  end
+
+  def grab_elements(starting_node, num_elements)
+    @elements = []
+    num_elements.times do
+      @elements << starting_node.link.data
+      starting_node = starting_node.link
+    end
+    @elements.join(" ")
   end
 
   def prepend(beat)
     @old_head = @head
-    @new_head = Node.new(beat, @old_head)
+    @head = Node.new(beat, @old_head)
   end
 
   def count
