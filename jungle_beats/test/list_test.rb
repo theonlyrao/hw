@@ -85,7 +85,7 @@ class ListTest < Minitest::Test
     assert_equal 4, list.count
   end
 
-  def test_pop_removes_tail
+  def test_pop_removes_tails
     node4 = Node.new("tee", nil)
     node3 = Node.new("bop", node4)
     node2 = Node.new("beep", node3)
@@ -93,7 +93,7 @@ class ListTest < Minitest::Test
 
     list = List.new(node1)
 
-    assert_equal "tee", list.pop(1)
-    assert_equal "bop", list.tail_is.data
+    assert_equal "beep bop tee", list.pop(3)
+    assert_equal "dep", list.tail_is.data
   end
 end

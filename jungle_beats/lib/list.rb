@@ -78,15 +78,18 @@ class List
     current_node
   end
 
-  def pop(times)
-    popped_node = self.tail_is
-    current_node = @head
-    until current_node.link == popped_node
-      current_node = current_node.link
+  def pop(number)
+    popped_nodes = []
+    number.times do
+      node = self.tail_is
+      current_node = @head
+      until current_node.link == node
+        current_node = current_node.link
+      end
+      current_node.link = nil
+      popped_nodes.unshift(node.data)
     end
-    current_node.link = nil
-
-    return popped_node.data
+    popped_nodes.join(" ")
   end
 
 end
