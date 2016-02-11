@@ -3,71 +3,21 @@ require 'pry'
 
 class List
 
-  attr_reader :head, :tail, :result
+  attr_reader :head, :tail
 
-  def initialize(beats)
-    @head = beats
+  def initialize
+    # @beats = beats
+    # build_list
   end
 
-  def append(data)
-    #get to the tail
-    #switch the link in the tail from nil to Node.new(data)
-    @tail = @head
-    unless @tail.link.nil?
-      @tail = @head.link
+  def build_list(beats)
+    beat_splitter = beats.split()
+    beat_count = beat_splitter.count
+
+    @head = beat_splitter.each do |beat|
+      beat_index = beat_splitter.index(beat)
+      Node.new(beat_splitter[beat_index], Node.new(beat_splitter[beat_index + 1]))
     end
-    @tail = Node.new(data)
-  end
-
-  def find(position, num_elements)
-    #get to the right position
-    #find its data and then the next elements
-    result = @head
-    position_counter = 0
-    while position_counter < position
-      result = result.link
-      position_counter += 1
-    end
-    @found_nodes = []
-    num_elements.times do
-      until result.link.nil?
-        @found_nodes << result.data
-        result = result.link
-      end
-    end
-    @found_nodes << result.data
-    @found_nodes.join(" ")
-  end
-
-  # def grab_elements(starting_node, num_elements)
-  #   #called by find method for List
-  #   @elements = [starting_node]
-  #   num_elements.times do
-  #     @elements << starting_node.link.data
-  #     starting_node = starting_node.link
-  #   end
-  #   @elements.join(" ")
-  # end
-
-  def all
-    self.find(0, self.count)
-  end
-
-  def prepend(beat)
-    @old_head = @head
-    @head = Node.new(beat, @old_head)
-  end
-
-  def count
-    #every time you open a node increment the count until you hit the tail
-    @counter = 1
-    current_node = @head
-    while current_node != self.tail_is
-      current_node = current_node.link
-      @counter += 1
-    end
-    # binding.pry
-    @counter
   end
 
   def tail_is
@@ -75,50 +25,8 @@ class List
     until current_node.link.nil?
       current_node = current_node.link
     end
-    current_node
+    @tail = current_node
   end
 
-  def pop(number)
-    popped_nodes = []
-    number.times do
-      node = self.tail_is
-      current_node = @head
-      until current_node.link == node
-        current_node = current_node.link
-      end
-      current_node.link = nil
-      popped_nodes.unshift(node.data)
-    end
-    popped_nodes.join(" ")
-  end
-
-  def include?(beat)
-    current_node = @head
-    while current_node.data != beat
-      if current_node.link.nil?
-        return false
-      else
-        current_node = current_node.link
-      end
-    end
-    return true
-  end
-
-  def insert(position, beat)
-    # if isn't working because need to fix prepend to take multiple beats
-    if position == 0
-      self.prepend(beat)
-    else
-      insertion_point = @head
-      position_counter = 0
-      while position_counter < (position - 1)
-        insertion_point = insertion_point.link
-        position_counter += 1
-      end
-      node_to_insert = Node.new(beat, insertion_point.link)
-      insertion_point.link = node_to_insert
-      self.all
-    end
-  end
 
 end
