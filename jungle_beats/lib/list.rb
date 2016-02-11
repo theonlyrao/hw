@@ -104,4 +104,21 @@ class List
     return true
   end
 
+  def insert(position, beat)
+    # if isn't working because need to fix prepend to take multiple beats
+    if position == 0
+      self.prepend(beat)
+    else
+      insertion_point = @head
+      position_counter = 0
+      while position_counter < (position - 1)
+        insertion_point = insertion_point.link
+        position_counter += 1
+      end
+      node_to_insert = Node.new(beat, insertion_point.link)
+      insertion_point.link = node_to_insert
+      self.all
+    end
+  end
+
 end

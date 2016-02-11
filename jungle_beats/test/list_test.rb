@@ -108,4 +108,15 @@ class ListTest < Minitest::Test
     assert_equal true, list.include?("tee")
     assert_equal false, list.include?("car")
   end
+
+  def test_insert_puts_beats_at_the_right_spot
+    node4 = Node.new("tee", nil)
+    node3 = Node.new("bop", node4)
+    node2 = Node.new("beep", node3)
+    node1 = Node.new("dep", node2)
+
+    list = List.new(node1)
+
+    assert_equal "dep la deep car beep bop tee", list.insert(1, "la deep car")
+  end
 end
