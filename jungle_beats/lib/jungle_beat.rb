@@ -8,7 +8,16 @@ class JungleBeat
 
   def initialize(beats)
     @beats = beats
-    @list = LinkedList.new(@beats)
+    @list = LinkedList.new(beats)
+
+    # if beats.split.count == 1
+    #   @list.push(beats)
+    # else
+    #   beats.split.each do |beat|
+    #     @list.push(beat)
+    #   end
+    # end
+
   end
 
   def play
@@ -18,12 +27,19 @@ class JungleBeat
 
   def append(data)
     #fix to handle multiple beats to append
-    
+    array = data.split()
+
     @tail = @list.head
-    unless @tail.link.nil?
+    until @tail.link.nil? #refactor with tail_is
       @tail = @list.head.link
     end
-    @tail = Node.new(data)
+    append_count = 0
+    array.each do |beat|
+      @tail = Node.new(beat)
+      append_count += 1
+    end
+    puts append_count
+
   end
 
   def find(position, num_elements)
@@ -60,10 +76,18 @@ class JungleBeat
     self.find(0, self.count)
   end
 
-  def prepend(beat)
+  def prepend(beats)
     #fix to handle multiple beats to prepend
     @old_head = @list.head
-    @list.head = Node.new(beat, @old_head)
+    split = beats.split()
+    prepend_counter = 0
+
+    split.each do |beat|
+      @list.head = Node.new(beat, @old_head)
+      prepend_counter += 1
+    end
+
+    puts prepend_counter
   end
 
   def count
