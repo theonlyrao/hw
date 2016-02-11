@@ -6,19 +6,22 @@ class LinkedList
 
   attr_accessor :head, :beats
 
-  def initialize(beats)
-    @beats = beats
+  def initialize(passed_from_jb)
+    @beats = passed_from_jb.to_s
+    split = @beats.split()
+    count = split.count
+
+    @head = Node.new(nil, nil)
+    n = 0
+
+    while n <= count do
+      @head.data = split[count - n].to_s
+      @head.link = Node.new(@head)
+      n += 1
+      if n == count
+        @head.link = nil
+      end
+    end
   end
-  binding.pry
-  split = @beats.split()
-  count = split.count
-
-  @head = Node.new
-
-  counter = 0
-  @head.data = split.first
-  while counter < count
-    @old_data
-    @head.link = Node.new(@head.link, )
 
 end

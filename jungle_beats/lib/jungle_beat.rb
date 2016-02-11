@@ -4,11 +4,11 @@ require 'pry'
 
 class JungleBeat
 
-  attr_reader :tail, :result, :list
+  attr_reader :tail, :result, :list, :beats
 
   def initialize(beats)
-    @list = LinkedList.new(beats)
-    binding.pry
+    @beats = beats
+    @list = LinkedList.new(@beats)
   end
 
   def play
@@ -18,6 +18,7 @@ class JungleBeat
 
   def append(data)
     #fix to handle multiple beats to append
+    
     @tail = @list.head
     unless @tail.link.nil?
       @tail = @list.head.link
