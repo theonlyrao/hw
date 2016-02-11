@@ -7,21 +7,20 @@ class JungleBeat
   attr_reader :tail, :result, :list, :beats
 
   def initialize(beats)
-    @beats = beats
-    @list = LinkedList.new(beats)
+    @list = LinkedList.new
 
-    # if beats.split.count == 1
-    #   @list.push(beats)
-    # else
-    #   beats.split.each do |beat|
-    #     @list.push(beat)
-    #   end
-    # end
+    if beats.split.count == 1
+      @list.push(beats)
+    else
+      beats.split.each do |beat|
+        @list.push(beat)
+      end
+    end
 
   end
 
   def play
-    `say -r 500 -v Boing "#{@list.head}"`
+    `say -r 500 -v Boing "#{@list}"`
     puts self.count
   end
 

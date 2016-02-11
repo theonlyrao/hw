@@ -7,7 +7,7 @@ class JungleBeatTest < Minitest::Test
   def test_jb_has_a_head
     jb = JungleBeat.new("bom deep dap")
 
-    assert_equal "bom", @list.head.data
+    assert_equal "bom", @list.data
   end
 
 
