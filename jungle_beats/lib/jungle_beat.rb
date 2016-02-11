@@ -1,9 +1,7 @@
 require_relative 'node'
 require_relative 'linked_list'
-require 'pry'
 
 class JungleBeat
-
   attr_reader :tail, :result, :list, :beats
 
   def initialize(beats)
@@ -25,11 +23,10 @@ class JungleBeat
   end
 
   def append(data)
-    #fix to handle multiple beats to append
     array = data.split()
 
     @tail = @list.head
-    until @tail.link.nil? #refactor with tail_is
+    until @tail.link.nil?
       @tail = @list.head.link
     end
     append_count = 0
@@ -42,8 +39,6 @@ class JungleBeat
   end
 
   def find(position, num_elements)
-    #get to the right position
-    #find its data and then the next elements
     result = @list.head
     position_counter = 0
     while position_counter < position
@@ -61,23 +56,12 @@ class JungleBeat
     @found_nodes.join(" ")
   end
 
-  # def grab_elements(starting_node, num_elements)
-  #   #called by find method for List
-  #   @elements = [starting_node]
-  #   num_elements.times do
-  #     @elements << starting_node.link.data
-  #     starting_node = starting_node.link
-  #   end
-  #   @elements.join(" ")
-  # end
-
   def all
     self.find(0, self.count)
   end
 
   def prepend(beats)
-    #fix to handle multiple beats to prepend
-    @old_head = @list.head
+   @old_head = @list.head
     split = beats.split()
     prepend_counter = 0
 
@@ -90,14 +74,12 @@ class JungleBeat
   end
 
   def count
-    #every time you open a node increment the count until you hit the tail
     @counter = 1
     current_node = @list.head
     while current_node != self.tail_is
       current_node = current_node.link
       @counter += 1
     end
-    # binding.pry
     @counter
   end
 
@@ -136,7 +118,6 @@ class JungleBeat
   end
 
   def insert(position, beat)
-    # if isn't working because need to fix prepend to take multiple beats
     if position == 0
       self.prepend(beat)
     else
