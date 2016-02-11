@@ -13,7 +13,9 @@ class NodeTest < Minitest::Test
   def test_a_node_alone_has_link_nil
     node = Node.new("node")
 
-    assert_equal nil, node.link
+    result = node.link
+
+    assert_equal nil, result
   end
 
   def test_data_returns_the_data_of_a_node
