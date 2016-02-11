@@ -1,17 +1,21 @@
-require_relative 'list'
+require_relative 'node'
+require 'pry'
 
 class JungleBeat
 
-  attr_reader :head, :tail, :result, :list
+  attr_reader :head, :tail, :result
 
   def initialize(beats)
-    @list = List.new
-    @list.build_list(beats)
+    @head = beats
+  end
+
+  def play
+    `say -r 500 -v Boing "#{@head}"`
+    puts self.count
   end
 
   def append(data)
-    #get to the tail
-    #switch the link in the tail from nil to Node.new(data)
+    #fix to handle multiple beats to append
     @tail = @head
     unless @tail.link.nil?
       @tail = @head.link
@@ -54,6 +58,7 @@ class JungleBeat
   end
 
   def prepend(beat)
+    #fix to handle multiple beats to prepend
     @old_head = @head
     @head = Node.new(beat, @old_head)
   end

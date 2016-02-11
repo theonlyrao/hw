@@ -2,26 +2,13 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require '../lib/jungle_beat'
 
-class JungleBeatsTest < Minitest::Test
-
-  def test_jb_creates_a_new_jb
-    jb = JungleBeat.new("deep dep dep deep")
-
-    assert_equal JungleBeat, jb.class
-  end
-
-  def test_jb_creates_list_of_beats
-    jb = JungleBeat.new("deep dep dep deep")
-
-    assert_equal "deep", jb.head
-  end
-
+class JungleBeatTest < Minitest::Test
   def test_list_has_a_head
     node3 = Node.new("bop", nil)
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal list.head, node1
   end
@@ -32,7 +19,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal "la", list.tail_is.data
   end
@@ -42,7 +29,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     new_beat = "tee"
 
@@ -56,7 +43,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     new_beat = "deep"
 
@@ -71,7 +58,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal "beep bop tee", list.find(1, 3)
   end
@@ -82,7 +69,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal "dep beep bop tee", list.all
   end
@@ -93,7 +80,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal 4, list.count
   end
@@ -104,7 +91,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal "beep bop tee", list.pop(3)
     assert_equal "dep", list.tail_is.data
@@ -116,7 +103,7 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal true, list.include?("tee")
     assert_equal false, list.include?("car")
@@ -128,9 +115,8 @@ class JungleBeatsTest < Minitest::Test
     node2 = Node.new("beep", node3)
     node1 = Node.new("dep", node2)
 
-    list = List.new(node1)
+    list = JungleBeat.new(node1)
 
     assert_equal "dep la deep car beep bop tee", list.insert(1, "la deep car")
   end
-
 end
