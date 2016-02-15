@@ -5,7 +5,7 @@ class NightWriter
   def initialize
     @english_to_braille_hash = Hash.new
 
-    @english_to_braille_hash["#"] = ["#", "0", ".", "0", "0", "0"]
+    @english_to_braille_hash["#"] = ["#", "#", "#", "#", "#", "#"]
     @english_to_braille_hash["0"] = [".", "0", "0", "0", ".", "."]
     @english_to_braille_hash["1"] = ["1", ".", ".", ".", ".", "."]
     @english_to_braille_hash["2"] = ["2", ".", "0", ".", ".", "."]
@@ -48,8 +48,8 @@ class NightWriter
     @english_to_braille_hash["-"] = ["0", ".", ".", ".", ".", "."]
     @english_to_braille_hash["."] = ["period"]
     @english_to_braille_hash["?"] = ["0", ".", ".", ".", ".", "."]
-    @english_to_braille_hash["Capital"] = ["0", ".", ".", ".", ".", "."]
-    @english_to_braille_hash[" "] = [".", ".", ".", ".", ".", "."]
+    @english_to_braille_hash["Capital"] = ["C", "C", "C", "C", "C", "C"]
+    @english_to_braille_hash[" "] = ["s", "p", "a", "a", "c", "e"]
 
     input_file = ARGV[0]
     output_file = ARGV[1]
@@ -98,8 +98,15 @@ class NightWriter
   def non_number_translator(letters)
     @braille_characters = []
     #probably put in if for capital and then do each blocks for letters == letters.capitalize
-    letters.chars.each do |letter|
-      @braille_characters << @english_to_braille_hash[letter]
+    if letters == letters.capitalize
+      letters.downcase.chars.each do |letter|
+        @braille_characters << @english_to_braille_hash[letter]
+      end
+      @braille_characters.unshift(@english_to_braille_hash["Capital"])
+    else
+      letters.chars.each do |letter|
+        @braille_characters << @english_to_braille_hash[letter]
+      end
     end
     if @braille_characters[-1] == ["period"]
       @braille_characters
