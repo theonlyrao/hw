@@ -4,23 +4,27 @@ require '../lib/night_write'
 
 class NightWriterTest < Minitest::Test
 
-  def test_nightwriter_translates_letters_and_symbols_to_braille
-    input = " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    output = "..............0.0.00000.00000..0.00.0.00000.00000..0.00.0..000000...0...0...00..
-..00..0...000...0....0.00.00000.00..0....0.00.00000.00..0.00...0.0......0.......
-..0.0...00.000....................0.0.0.0.0.0.0.0.0.0.0000.0000000.0...0...0...0
-00..0...00..00..0....0...0..0...0...00..00..0...00..00..0....0...0..0...0....0..
-.0...0..0...00..00..0...00......0........0...0..0...00..00..0...00......0...00..
-...0...0...0...0...0...0...00..00..00..00..00..00..00..00..00..00..000.000.0.0.0
-00..00..0.
-.....0...0
-00.000.000"
+  def test_braille_formatter_returns_three_lines_of_text
+    test = NightWriter.new
+
+    letter = ["a", "b", "c", "d", "e", "f"]
+
+    line_1 = ["a", "b"]
+    line_2 = ["c", "d"]
+    line_3 = ["e", "f"]
+
+    assert_equal line_1 && line_2 && line_3, test.braille_formatter(letter)
   end
 
-  def test_nightwriter_translates_numbers_to_braille
+  def test_non_number_translator_returns_three_lines_of_braille
+    test = NightWriter.new
 
-    input = "test 01234 567.89 test"
-    output = "TBD"
+    letters = "H"
+
+    line_1 = [".", "0"]
+    line_2 = [".", "0"]
+    line_3 = ["0", "0"]
+
+    assert_equal line_1 && line_2 && line_3, test.non_number_translator(letters)
   end
-
 end
