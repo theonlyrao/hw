@@ -70,7 +70,8 @@ class NightWriter
     english_array.each do |word|
       @characters = word.chars
       end
-      if @characters[0].to_i.to_s == @characters[0]
+      binding.pry
+      if @characters[0].to_i.to_s == @characters[0] # checking to see if number
         @braille_arrays << @etb_hash["#"]
         @characters.each do |char|
           @braille_arrays << @etb_hash[char]

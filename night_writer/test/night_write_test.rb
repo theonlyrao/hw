@@ -5,6 +5,7 @@ require '../lib/night_write'
 class NightWriterTest < Minitest::Test
 
   def test_send_to_translate_gives_array_of_words_from_input
+    skip
     test = NightWriter.new
     input = "hello World 123 goodbye."
 
@@ -13,7 +14,14 @@ class NightWriterTest < Minitest::Test
     assert_equal ["hello", "World", "123", "goodbye."], array
   end
 
+  def test_when_it_sees_a_number_it_inserts_pound
+  end
+
+  def test_when_it_sees_two_numbers_it_inserts_only_one_pound
+  end
+
   def test_translate_of_numbers_in_middle_gives_braille_array
+    skip
     test = NightWriter.new
     input = ["123"]
 
@@ -29,6 +37,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_translate_of_lowercase_in_middle_gives_braille_array
+    skip
     test = NightWriter.new
     input = ["hi"]
 
@@ -42,6 +51,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_translate_of_capital_in_middle_gives_braille_array
+    skip
     test = NightWriter.new
     input = ["Hi"]
 
@@ -56,6 +66,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_translate_of_numbers_at_end_gives_braille_array
+    skip
     test = NightWriter.new
     input = ["123."]
 
@@ -71,6 +82,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_translate_of_lowercase_at_end_gives_braille_array
+    skip
     test = NightWriter.new
     input = ["hi."]
 
@@ -84,6 +96,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_translate_of_capital_at_end_gives_braille_array
+    skip
     test = NightWriter.new
     input = ["Hi."]
 
@@ -98,10 +111,10 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_translate_all_options_together
-    test = NightWriter.new
+    night = NightWriter.new
     input = ["Hi 123 I."]
 
-    braille_input = test.translate(input)
+    braille_input = night.translate(input)
 
     capital = [".", ".", ".", ".", ".", "0"]
     h = ["0", ".", "0", "0", ".", "."]
@@ -117,6 +130,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_braille_formatter_returns_three_lines_per_char
+    skip
     test = NightWriter.new
 
     word = ["h"]
@@ -125,6 +139,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_braille_joiner_creates_three_strings_from_multiple_chars
+    skip
     test = NightWriter.new
 
     word = ["hi"]
