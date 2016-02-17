@@ -10,8 +10,12 @@ class Person
     @accounts = []
     @cash = 1000
     # also need to track balances at each bank
-
+    @credits = []
     p "#{@name} has been created with #{@galleons} galleons in cash."
+  end
+
+  def credits
+    @credits
   end
 
   def name
@@ -21,6 +25,21 @@ class Person
   def galleons
     @galleons
   end
+
+    def balance_check(source)
+      # "delegator" -- we ask person for a thing and they
+      # simply delegate the work to another object (in this case a Bank or a Credit)
+      # if its a bank, tell bank balance
+      # or if its a cc tell your available credit
+    end
+
+    def pay(amount, source) # source could be: a bank? ("Bank of America") or a credit company? ("AMEX")
+      # do we start here by filling in part of the branch
+      # or do we start by building out the other "dependency"
+      # then come back and patch them together
+      # goes either to bank.withdrawal
+      # or credit.cc_spend
+    end
 
 end
 
@@ -42,6 +61,9 @@ class Bank
   def open_account(person)
     p "An account has been opened for #{person.name} with #{self.name}"
     person.accounts << self.name
+    # each person gets their own account
+    # and later we need to be able to look up the specific account
+    # that matches that person
     @list_of_accounts[person] = 0 # creating a new account for the person and setting opening amount to 0
   end
 
