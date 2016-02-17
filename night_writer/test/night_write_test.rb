@@ -5,45 +5,69 @@ require '../lib/night_write'
 class NightWriterTest < Minitest::Test
 
   def test_send_to_translate_gives_array_of_words_from_input
-    test = NightWriter.new
+    napoleon = NightWriter.new
     input = "hello World 123 goodbye."
 
-    array = test.send_to_translate(input)
+    array = napoleon.send_to_translate(input)
 
-    assert_equal ["hello", "World", "123", "goodbye."], test.english_array
+    assert_equal ["hello", "World", "123", "goodbye."], napoleon.english_array
   end
 
-  def test_when_it_sees_a_number_it_inserts_pound
+  def test_a_regular_word_creates_braille_word_instance
+    napoleon = NightWriter.new
+    input = ["hi"]
+    d = Dictionary.new
+
+    assert_equal [d.etb["h"], d.etb["i"], d.etb[" "]].join, napoleon.translate(input)
   end
 
-  def test_when_it_sees_two_numbers_it_inserts_only_one_pound
+  def test_a_number_element_creates_braille_number_instance_returned_as_string
+    napoleon = NightWriter.new
+    input = ["123"]
+    d = Dictionary.new
+
+    assert_equal [d.etb["#"], d.etb["1"], d.etb["2"], d.etb["3"], d.etb[" "]].join, napoleon.translate(input)
   end
 
-  def test_when_it_sees_a_cap_it_inserts_capital
+  def test_a_capital_word_creates_braille_capital_instance
+    napoleon = NightWriter.new
+    input = ["Hi"]
+    d = Dictionary.new
+
+    assert_equal [d.etb["Capital"], d.etb["h"], d.etb["i"], d.etb[" "]].join, napoleon.translate(input)
   end
 
-  def test_when_it_sees_word_with_cap_it_inserts_capital
+  def test_can_translate_an_actual_sentence
+    napoleon = NightWriter.new
+    input = "Hi 123 bye."
+    d = Dictionary.new
+
+    capital = d.etb["Capital"]
+    h = d.etb["h"]
+    i = d.etb["i"]
+    space = d.etb[" "]
+    pound = d.etb["#"]
+    one = d.etb["1"]
+    two = d.etb["2"]
+    three = d.etb["3"]
+    b = d.etb["b"]
+    y = d.etb["y"]
+    e = d.etb["e"]
+    period = d.etb["."]
+
+    assert_equal [capital, h, i, space, pound, one, two, three, space, b, y, e, period].join, napoleon.send_to_translate(input)
   end
 
-  def test_when_word_ends_with_punctuation_it_inserts_only_punctuation
+  def test_a_braille_instance_gets_split_among_lines_properly
   end
 
-  def test_when_word_ends_with_space_it_inserts_space
+  def test_stringing_braille_instances_together_works
   end
 
-  def test_it_splits_words_into_three_rows
+  def test_can_measure_length_of_a_braille_line
   end
 
-  def test_it_joins_word_rows_together
-  end
-
-  def test_it_counts_length_of_word_row
-  end
-
-  def test_it_creates_new_row_if_length_more_than_80
-  end
-
-  def test_it_prints_each_row_in_order
+  def test_can_split_a_braille_line_at_80_characters
   end
 
 end
