@@ -5,6 +5,7 @@ require '../lib/night_write'
 class NightWriterTest < Minitest::Test
 
   def test_send_to_translate_gives_array_of_words_from_input
+    skip
     napoleon = NightWriter.new
     input = "hello World 123 goodbye."
 
@@ -14,6 +15,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_a_regular_word_creates_braille_word_instance
+    skip
     napoleon = NightWriter.new
     input = ["hi"]
     d = Dictionary.new
@@ -26,10 +28,15 @@ class NightWriterTest < Minitest::Test
     input = ["123"]
     d = Dictionary.new
 
-    assert_equal [d.etb["#"], d.etb["1"], d.etb["2"], d.etb["3"], d.etb[" "]].join, napoleon.translate(input)
+    napoleon.translate(input)
+
+    assert_equal ".00.0.00..", napoleon.line1
+    assert_equal ".0..0.....", napoleon.line2
+    assert_equal "00........", napoleon.line3
   end
 
   def test_a_capital_word_creates_braille_capital_instance
+    skip
     napoleon = NightWriter.new
     input = ["Hi"]
     d = Dictionary.new
@@ -38,6 +45,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_can_translate_an_actual_sentence
+    skip
     napoleon = NightWriter.new
     input = "Hi 123 bye."
     d = Dictionary.new

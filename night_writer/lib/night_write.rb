@@ -3,7 +3,7 @@ require_relative 'dictionary'
 
 class NightWriter
 
-  attr_reader :english_array, :etb
+  attr_reader :english_array, :etb, :line1, :line2, :line3
 
   def initialize
     # input_file = ARGV[0]
@@ -19,8 +19,16 @@ class NightWriter
     # p "Message has been translated into braille. Please see output file."
   end
 
-  def push(braille_word_or_number)
-    @braille_sentence << braille_word_or_number
+  def push_one(braille_line)
+    @line1 = braille_line
+  end
+
+  def push_two(braille_line)
+    @line2 = braille_line
+  end
+
+  def push_three(braille_line)
+    @line3 = braille_line
   end
 
   def format_sentence(braille_sentence)
@@ -29,9 +37,11 @@ class NightWriter
 
   def translate(english_array)
     english_array.each do |element|
-      if element.to_i.to_s == element
+      if element.to_i.to_s == element # number is working
         @number = Number.new(element)
-        push(@number.braille_number)
+        push_one(@number.number1)
+        push_two(@number.number2)
+        push_three(@number.number3)
       elsif element.downcase == element
         @word = Word.new(element)
         push(@word.braille_word)
@@ -40,13 +50,16 @@ class NightWriter
         push(@cap_word.braille_cap_word)
       end
     end
-    format_sentence(@braille_sentence)
+    # format_sentence(@braille_sentence)
     #File.write(@output_file, format_sentence(@braille_sentence))
+    @line1
+    @line2
+    @line3
   end
 
 end
 
-class BrailleMatrix
+class BrailleMatrix # working
 
   def initialize(braille_word_or_number)
     @braille_array = braille_word_or_number
@@ -54,9 +67,14 @@ class BrailleMatrix
   end
 
   def array_to_rows(array)
-    @line1 = array[0..1].join
-    @line2 = array[2..3].join
-    @line3 = array[4..5].join
+    @line1 = ""
+    @line2 = ""
+    @line3 = ""
+    array.each do |character|
+      @line1 += character[0..1].join
+      @line2 += character[2..3].join
+      @line3 += character[4..5].join
+    end
   end
 
   def line1
@@ -73,7 +91,7 @@ class BrailleMatrix
 
 end
 
-class Number
+class Number # working
 
   def initialize(number)
     @dictionary = Dictionary.new
@@ -92,11 +110,30 @@ class Number
     if number[-1] != @dictionary.etb["."]
       @braille_number << @dictionary.etb[" "]
     end
-    @braille_number
+    make_matrix(@braille_number)
+  end
+
+  def make_matrix(number)
+    number_matrix = BrailleMatrix.new(number)
+    @number1 = number_matrix.line1
+    @number2 = number_matrix.line2
+    @number3 = number_matrix.line3
   end
 
   def braille_number
     @braille_number
+  end
+
+  def number1
+    @number1
+  end
+
+  def number2
+    @number2
+  end
+
+  def number3
+    @number3
   end
 
 end
