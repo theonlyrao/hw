@@ -1,7 +1,7 @@
 require_relative 'dictionary'
 require_relative 'braille_matrix'
 
-class Number # working
+class Number
 
   def initialize(number)
     @dictionary = Dictionary.new

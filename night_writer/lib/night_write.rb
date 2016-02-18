@@ -5,7 +5,7 @@ require_relative 'number'
 require_relative 'word'
 require_relative 'cap_word'
 
-class NightWriter
+class NightWrite
 
   def initialize
     input_file = ARGV[0]
@@ -21,18 +21,6 @@ class NightWriter
     @english_array = input.split()
     translate(@english_array)
     p "Created #{@output_file.inspect} containing #{@input.length} characters"
-  end
-
-  def push_one(braille_line)
-    @line1 += braille_line
-  end
-
-  def push_two(braille_line)
-    @line2 += braille_line
-  end
-
-  def push_three(braille_line)
-    @line3 += braille_line
   end
 
   def translate(english_array)
@@ -55,6 +43,18 @@ class NightWriter
       end
     end
     write_output(@line1, @line2, @line3)
+  end
+
+  def push_one(braille_line)
+    @line1 += braille_line
+  end
+
+  def push_two(braille_line)
+    @line2 += braille_line
+  end
+
+  def push_three(braille_line)
+    @line3 += braille_line
   end
 
   def write_output(line1, line2, line3)
@@ -82,4 +82,4 @@ class NightWriter
 
 end
 
-NightWriter.new
+NightWrite.new

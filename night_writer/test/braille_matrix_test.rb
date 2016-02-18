@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require '../lib/night_write'
+require '../lib/braille_matrix'
 
 class BrailleMatrixTest < Minitest::Test
 
