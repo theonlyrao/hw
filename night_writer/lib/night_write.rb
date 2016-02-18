@@ -8,19 +8,19 @@ require_relative 'cap_word'
 class NightWriter
 
   def initialize
-    # input_file = ARGV[0]
-    # @output_file = ARGV[1]
-    # @input = File.read(input_file)
+    input_file = ARGV[0]
+    @output_file = ARGV[1]
+    @input = File.read(input_file)
     @line1 = ""
     @line2 = ""
     @line3 = ""
-    # send_to_translate(@input)
+    send_to_translate(@input)
   end
 
   def send_to_translate(input)
     @english_array = input.split()
     translate(@english_array)
-    # p "Message has been translated into braille. Please see output file."
+    p "Created #{@output_file.inspect} containing #{@input.length} characters"
   end
 
   def push_one(braille_line)
@@ -54,6 +54,14 @@ class NightWriter
         push_three(@cap_word.cap_word3)
       end
     end
+    write_output(@line1, @line2, @line3)
+  end
+
+  def write_output(line1, line2, line3)
+    output = File.open(@output_file, 'w') { |f|
+      f << "#{line1}\n#{line2}\n#{line3}"
+    }
+    output.close
   end
 
   def english_array
