@@ -1,6 +1,6 @@
 class Dictionary
 
-  attr_reader :etb
+  attr_reader :etb, :bte_others, :bte_numbers
 
   def initialize
     @etb = Hash.new
@@ -45,13 +45,13 @@ class Dictionary
       @etb["'"] = [".", ".", ".", ".", "0", "."]
       @etb[","] = [".", ".", "0", ".", ".", "."]
       @etb["-"] = [".", ".", ".", ".", "0", "0"]
-      @etb["."] = [".", ".", "0", "0", ".","0"]
+      @etb["."] = [".", ".", "0", "0", ".", "0"]
       @etb["?"] = [".", ".", "0", ".", "0", "0"]
       @etb["Capital"] = [".", ".", ".", ".", ".", "0"]
       @etb[" "] = [".", ".", ".", ".", ".", "."]
 
     @bte_numbers = Hash.new
-      @bte_numbers[[".", "0", ".", "0", "0", "0"]] = "#"
+      @bte_numbers[[".", "0", ".", "0", "0", "0"]] = ""
       @bte_numbers[[".", "0", "0", "0", ".", "."]] = "0"
       @bte_numbers[["0", ".", ".", ".", ".", "."]] = "1"
       @bte_numbers[["0", ".", "0", ".", ".", "."]] = "2"
@@ -62,34 +62,43 @@ class Dictionary
       @bte_numbers[["0", "0", "0", "0", ".", "."]] = "7"
       @bte_numbers[["0", ".", "0", "0", ".", "."]] = "8"
       @bte_numbers[[".", "0", "0", ".", ".", "."]] = "9"
+      @bte_others[[".", ".", ".", ".", ".", "."]] = " "
 
     @bte_others = Hash.new
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
-      @bte_others[] = ""
+      @bte_others[["0", ".", ".", ".", ".", "."]] = "a"
+      @bte_others[["0", ".", "0", ".", ".", "."]] = "b"
+      @bte_others[["0", "0", ".", ".", ".", "."]] = "c"
+      @bte_others[["0", "0", ".", "0", ".", "."]] = "d"
+      @bte_others[["0", ".", ".", "0", ".", "."]] = "e"
+      @bte_others[["0", "0", "0", ".", ".", "."]] = "f"
+      @bte_others[["0", "0", "0", "0", ".", "."]] = "g"
+      @bte_others[["0", ".", "0", "0", ".", "."]] = "h"
+      @bte_others[[".", "0", "0", ".", ".", "."]] = "i"
+      @bte_others[[".", "0", "0", "0", ".", "."]] = "j"
+      @bte_others[["0", ".", ".", ".", "0", "."]] = "k"
+      @bte_others[["0", ".", "0", ".", "0", "."]] = "l"
+      @bte_others[["0", "0", ".", ".", "0", "."]] = "m"
+      @bte_others[["0", "0", ".", "0", "0", "."]] = "n"
+      @bte_others[["0", ".", ".", "0", "0", "."]] = "o"
+      @bte_others[["0", "0", "0", ".", "0", "."]] = "p"
+      @bte_others[["0", "0", "0", "0", "0", "."]] = "q"
+      @bte_others[["0", ".", "0", "0", "0", "."]] = "r"
+      @bte_others[[".", "0", "0", ".", "0", "."]] = "s"
+      @bte_others[[".", "0", "0", "0", "0", "."]] = "t"
+      @bte_others[["0", ".", ".", ".", "0", "0"]] = "u"
+      @bte_others[["0", ".", "0", ".", "0", "0"]] = "v"
+      @bte_others[[".", "0", "0", "0", ".", "0"]] = "w"
+      @bte_others[["0", "0", ".", ".", "0", "0"]] = "x"
+      @bte_others[["0", "0", ".", "0", "0", "0"]] = "y"
+      @bte_others[["0", ".", ".", "0", "0", "0"]] = "z"
+      @bte_others[[".", ".", "0", "0", "0", "."]] = "!"
+      @bte_others[[".", ".", ".", ".", "0", "."]] = "''"
+      @bte_others[[".", ".", "0", ".", ".", "."]] = ","
+      @bte_others[[".", ".", ".", ".", "0", "0"]] = "-"
+      @bte_others[[".", ".", "0", "0", ".", "0"]] = "."
+      @bte_others[[".", ".", "0", ".", "0", "0"]] = "?"
+      @bte_others[[".", ".", ".", ".", ".", "0"]] = "Capital"
+      @bte_others[[".", ".", ".", ".", ".", "."]] = " "
   end
 
 end

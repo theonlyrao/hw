@@ -11,7 +11,8 @@ class Read
 
   def translate
     @braille_array = ArrayCreator.new(@braille_message)
-    EnglishTranslator.new(@braille_array.braille_characters)
+    @translation = EnglishTranslator.new(@braille_array.braille_characters)
+    @translation.english
   end
 
 end
