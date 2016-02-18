@@ -49,6 +49,47 @@ class Dictionary
       @etb["?"] = [".", ".", "0", ".", "0", "0"]
       @etb["Capital"] = [".", ".", ".", ".", ".", "0"]
       @etb[" "] = [".", ".", ".", ".", ".", "."]
+
+    @bte_numbers = Hash.new
+      @bte_numbers[[".", "0", ".", "0", "0", "0"]] = "#"
+      @bte_numbers[[".", "0", "0", "0", ".", "."]] = "0"
+      @bte_numbers[["0", ".", ".", ".", ".", "."]] = "1"
+      @bte_numbers[["0", ".", "0", ".", ".", "."]] = "2"
+      @bte_numbers[["0", "0", ".", ".", ".", "."]] = "3"
+      @bte_numbers[["0", "0", ".", "0", ".", "."]] = "4"
+      @bte_numbers[["0", ".", ".", "0", ".", "."]] = "5"
+      @bte_numbers[["0", "0", "0", ".", ".", "."]] = "6"
+      @bte_numbers[["0", "0", "0", "0", ".", "."]] = "7"
+      @bte_numbers[["0", ".", "0", "0", ".", "."]] = "8"
+      @bte_numbers[[".", "0", "0", ".", ".", "."]] = "9"
+
+    @bte_others = Hash.new
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
+      @bte_others[] = ""
   end
 
 end

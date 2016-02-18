@@ -12,4 +12,4 @@ output_filename = ARGV[1]
 File.write(output_filename, english_message)
 
 # print the name of the english file and number of characters in it
-p "Created #{output_filename.inspect} containing #{" "} characters."
+p "Created #{output_filename.inspect} containing length_to_come characters."

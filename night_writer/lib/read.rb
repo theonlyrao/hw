@@ -1,5 +1,6 @@
 require 'pry'
 require_relative 'array_creator'
+require_relative 'english_translator'
 
 class Read
 
@@ -10,6 +11,7 @@ class Read
 
   def translate
     @braille_array = ArrayCreator.new(@braille_message)
+    EnglishTranslator.new(@braille_array.braille_characters)
   end
 
 end
