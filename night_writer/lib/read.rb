@@ -1,7 +1,7 @@
 require 'pry'
-require_relative 'line_reducer'
+require_relative 'array_creator'
 
-class Night
+class Read
 
   def initialize(braille_message)
     @braille_message = braille_message

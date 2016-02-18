@@ -1,4 +1,6 @@
-class BrailleMatrix # working
+require 'pry'
+
+class BrailleMatrix
 
   def initialize(braille_word_or_number)
     @braille_array = braille_word_or_number

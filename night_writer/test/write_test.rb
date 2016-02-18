@@ -1,23 +1,19 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/night_write'
+require '../lib/write'
 
-class NightWriteTest < Minitest::Test
+class TestWriteTest < Minitest::Test
 
   def test_send_to_translate_gives_array_of_words_from_input
-    napoleon = NightWrite.new
     input = "hello World 123 goodbye."
+    array = Write.new(input)
 
-    array = napoleon.send_to_translate(input)
-
-    assert_equal ["hello", "World", "123", "goodbye."], napoleon.english_array
+    assert_equal ["hello", "World", "123", "goodbye."], array.english_array
   end
 
   def test_can_translate_an_actual_sentence
-    napoleon = NightWrite.new
     input = "Hi 123 bye."
-
-    napoleon.send_to_translate(input)
+    napoleon = Write.new(input)
 
     assert_equal '..0..0...00.0.00..0.000...', napoleon.line1
     assert_equal '..000....0..0.....0..0.000', napoleon.line2
