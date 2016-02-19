@@ -53,8 +53,24 @@ class Write
     @line3 += braille_line
   end
 
-  def write_braille
-      @line1 + "\n" + @line2 + "\n" + @line3
+  def write_braille(wrap_point = 80)
+      # @line1 + "\n" + @line2 + "\n" + @line3
+      @output = ""
+      length = @line1.length
+      num_breaks = (length / wrap_point) + 1
+      i = 0
+      a_array = split_line(@line1, wrap_point)
+      b_array = split_line(@line2, wrap_point)
+      c_array = split_line(@line3, wrap_point)
+      until i >= num_breaks do
+        @output += "#{a_array[i]}\n#{b_array[i]}\n#{c_array[i]}\n"
+        i += 1
+      end
+      @output
+  end
+
+  def split_line(line, length)
+    line.scan(/.{1,#{length}}/)
   end
 
   def english_array # only exists for testing purposes

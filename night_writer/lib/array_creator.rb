@@ -9,10 +9,26 @@ class ArrayCreator
 
   def turn_line_into_three_strings(line_of_braille)
     braille_array = line_of_braille.split("\n")
-    @string1 = braille_array[0]
-    @string2 = braille_array[1]
-    @string3 = braille_array[2]
+    undo_line_break_nonsense(braille_array)
     make_braille_character_arrays(@string1, @string2, @string3)
+  end
+
+  def undo_line_break_nonsense(array)
+    max = array.count
+    i = 0
+    @string1 = ""
+    @string2 = ""
+    @string3 = ""
+    while i < max do
+      if i % 3 == 0
+        @string1 += array[i]
+      elsif i % 3 == 1
+        @string2 += array[i]
+      else
+        @string3 += array[i]
+      end
+      i += 1
+    end
   end
 
   def make_braille_character_arrays(string1, string2, string3)
