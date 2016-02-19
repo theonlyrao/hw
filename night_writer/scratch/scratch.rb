@@ -1,21 +1,46 @@
+require 'pry'
+
 class Scratch
 
   def initialize
-    input_file = ARGV[0]
-    @output_file = ARGV[1]
-    @input = File.read(input_file)
-    send_to_translate(@input)
+    @line1 = ""
+    @line2 = ""
+    @line3 = ""
   end
 
-  def send_to_translate(input)
-    output = File.open(@output_file, "a+") { |f|
-      f << input.chomp + "1\n"
-      f << input.chomp + "2\n"
-      f << input.chomp + "3\n"
-    }
-    output.close
+  def push_one(braille_line)
+    @line1 += braille_line
+  end
+
+  def push_two(braille_line)
+    @line2 += braille_line
+  end
+
+  def push_three(braille_line)
+    @line3 += braille_line
+  end
+
+  def write_braille(a, b, c, wrap_point)
+    @output = ""
+    length = a.length
+    num_breaks = (length / wrap_point) + 1
+    i = 0
+    a_array = split_line(a, wrap_point)
+    b_array = split_line(b, wrap_point)
+    c_array = split_line(c, wrap_point)
+    until i >= num_breaks do
+      @output += "#{a_array[i]}\n#{b_array[i]}\n#{c_array[i]}\n"
+      i += 1
+    end
+    @output
+  end
+
+  def split_line(line, length)
+    line.scan(/.{1,#{length}}/)
+  end
+
+  def output
+    @output
   end
 
 end
-
-Scratch.new
