@@ -12,4 +12,4 @@ output_filename = ARGV[1]
 File.write(output_filename, braille_message)
 
 # print the name of the braille file and number of characters in it
-p "Created #{output_filename.inspect} containing #{english_message.length} characters."
+puts "Created #{output_filename.inspect} containing #{english_message.length} characters."
