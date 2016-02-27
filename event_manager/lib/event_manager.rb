@@ -1,3 +1,5 @@
+# from http://tutorials.jumpstartlab.com/projects/eventmanager.html#iteration-3:-using-sunlight
+
 require 'pry'
 require 'csv'
 require 'sunlight/congress'
