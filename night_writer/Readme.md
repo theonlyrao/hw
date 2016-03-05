@@ -1,6 +1,7 @@
 # NIGHTWRITER - Braille to English
 
 ## BDD - Why we're here
+
 The fiction is that I am writing this program to help convert English to Braille and then back again into English. The translator should be able to handle lowercase letters, capital letters, numbers, and common symbols. The Braille should also break to a new line after 80 characters.
 
 The reality is that I am writing this program in order to learn how to program and also to pass Module 1. I'm not sure which of those goals has priority.
